@@ -85,7 +85,7 @@ function scp_expdp_parallel () {
     for i in $DISK_ARRAY;
     do
       AVAIL_DISK_SIZE_M=`$SSH oracle@172.16.20.22 $DF -m | grep $i | $AWK '{print $4}'`
-      if [ `$EXPR $AVAIL_DISK_SIZE_M / 1024` -gt `$EXPR $EXPDP_TOTAL_SIZE_M /1024` ]; then
+      if [ `$EXPR $AVAIL_DISK_SIZE_M / 1024` -gt `$EXPR $EXPDP_TOTAL_SIZE_M / 1024` ]; then
         for j in $EXPDP_DMP;
         do
           EXPDP_DATE=`$ECHO $j | $CUT -c 1-8`
