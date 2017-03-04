@@ -25,7 +25,7 @@
 # |                                                                        |
 # | PARAMETERS : None.                                                     |
 # |                                                                        |
-# | MODIFIED   : 02/13/2017 (dd/mm/yyyy)                                   |
+# | MODIFIED   : 02/13/2017 (mm/dd/yyyy)                                   |
 # |                                                                        |
 # | NOTE       : As with any code, ensure to test this script in a         |
 # |              development environment before attempting to run it in    |
@@ -108,4 +108,3 @@ done
 # +------------------------------------------------------------------------+
 
 scp_expdp_parallel
-
