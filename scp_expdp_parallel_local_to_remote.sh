@@ -42,18 +42,19 @@ source ~/.bash_profile
 # | GLOBAL VARIABLES ABOUT THE ABSOLUTE PATH OF THE SHELL COMMAND          |
 # +------------------------------------------------------------------------+
 
-export AWK='/bin/awkexport CUT='/bin/cut'
-export DATE='/bin/date'
-export DF='/bin/df'
-export DU='/usr/bin/du'
-export ECHO='/bin/echo'
-export EXPR='/usr/bin/expr'
+export AWK=`which awk`
+export CUT=`which cut`
+export DATE=`which date`
+export DF=`which df`
+export DU=`which du`
+export ECHO=`which echo`
+export EXPR=`which expr`
 export LS='/bin/ls'
-export RM='/bin/rm'
-export SCP='/usr/bin/scp'
-export SCRIPT='/usr/bin/script'
-export SSH='/usr/bin/ssh'
-export UNIQ='/usr/bin/uniq'
+export RM=`which rm`
+export SCP=`which scp`
+export SCRIPT=`which script`
+export SSH=`which ssh`
+export UNIQ=`which uniq`
 
 # +------------------------------------------------------------------------+
 # | SWITCH CURRENT DIRECTORY TO EXPDP DIRECTORY OF ORACLE USER WITH CD     |
