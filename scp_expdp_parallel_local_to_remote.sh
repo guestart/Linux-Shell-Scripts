@@ -25,7 +25,7 @@
 # |                                                                        |
 # | PARAMETERS : None.                                                     |
 # |                                                                        |
-# | MODIFIED   : 03/16/2017 (mm/dd/yyyy)                                   |
+# | MODIFIED   : 03/17/2017 (mm/dd/yyyy)                                   |
 # |                                                                        |
 # | NOTE       : As with any code, ensure to test this script in a         |
 # |              development environment before attempting to run it in    |
@@ -49,7 +49,7 @@ export DF=`which df`
 export DU=`which du`
 export ECHO=`which echo`
 export EXPR=`which expr`
-export LS='/bin/ls'
+export LS=`which ls`
 export RM=`which rm`
 export SCP=`which scp`
 export SCRIPT=`which script`
