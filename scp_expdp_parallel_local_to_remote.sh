@@ -36,7 +36,7 @@
 # | EXPORT ENVIRONMENT VARIABLE OF ORACLE USER                             |
 # +------------------------------------------------------------------------+
 
-source ~/.bash_profile
+source ~/.bash_profile;
 
 # +------------------------------------------------------------------------+
 # | GLOBAL VARIABLES ABOUT THE ABSOLUTE PATH OF THE SHELL COMMAND          |
@@ -49,6 +49,7 @@ export DF=`which df`
 export DU=`which du`
 export ECHO=`which echo`
 export EXPR=`which expr`
+export GREP=`which grep`
 export LS=`which ls`
 export RM=`which rm`
 export SCP=`which scp`
@@ -85,7 +86,7 @@ function scp_expdp_parallel () {
 
     for i in $DISK_ARRAY;
     do
-      AVAIL_DISK_SIZE_M=`$SSH oracle@172.16.20.22 $DF -m | grep $i | $AWK '{print $4}'`
+      AVAIL_DISK_SIZE_M=`$SSH oracle@172.16.20.22 $DF -m | $GREP $i | $AWK '{print $4}'`
       if [ `$EXPR $AVAIL_DISK_SIZE_M / 1024` -gt `$EXPR $EXPDP_TOTAL_SIZE_M / 1024` ]; then
         for j in $EXPDP_DMP;
         do
