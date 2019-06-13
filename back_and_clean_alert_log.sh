@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# crontab setting on linux is as follows:
+
+# 30 01 * * * ~/back_and_clean_alert_log.sh >>/dev/null 2>&1
+
 # +---------------------------------------------------------------------+
 # |                                                                     |
 # | File Name    : back_and_clean_alert_log.sh                          |
@@ -62,15 +67,15 @@ export TRACE=$ORACLE_BASE/diag/rdbms/orcl/orcl/trace
 
 export SIZE=`$DU -m $TRACE/alert_orcl.log | $CUT -f1`
 
-# +--------------------------------------------------------+
-# |                                                        |
-# | If the size of "alert_orcl.log" is greater than 150 M, |
-# |                                                        |
-# | then backup "alert_orcl.log".                          |
-# |                                                        |
-# | and clean the content of it, otherwise reserve.        |
-# |                                                        |
-# +--------------------------------------------------------+
+# +---------------------------------------------------------+
+# |                                                         |
+# | If the size of "alert_orcl.log" is greater than 150 MB, |
+# |                                                         |
+# | then backup and clean its current content, otherwise do |
+# |                                                         |
+# | nothing.                                                |
+# |                                                         |
+# +---------------------------------------------------------+
 
 if [ $SIZE -gt 150 ]; then
 
