@@ -18,6 +18,6 @@
 
 * [rman_restore_and_recover_to_target_oracle.sh](https://github.com/guestart/Linux-Shell-Scripts/blob/master/rman_backup_and_restore_experiment/rman_restore_and_recover_to_target_oracle.sh) - Use rman restore and recover oracle to target host
 
-### RMAN Validate Shell Script:
+### RMAN Validate:
 
 * [rman_validate_v2.sh](https://github.com/guestart/Linux-Shell-Scripts/blob/master/rman_backup_and_restore_experiment/rman_validate_v2.sh) - Validate the rman backupset on source host
