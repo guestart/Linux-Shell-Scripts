@@ -1,7 +1,7 @@
 #!/bin/bash
 # +---------------------------------------------------------------------+
 # |                                                                     |
-# | File Name    : back_and_clean_alert_orcl.sh                         |
+# | File Name    : back_and_clean_alert_log.sh                          |
 # |                                                                     |
 # | Author       : Quanwen Zhao                                         |
 # |                                                                     |
@@ -11,13 +11,17 @@
 # |                                                                     |
 # |                orcl/orcl/trace" directory of oracle db server.      |
 # |                                                                     |
-# | Call Syntax  : . ~/back_and_clean_alert_orcl.sh                     |
+# |                Assume that my oracle database name is "orcl".       |
+# |                                                                     |
+# | Call Syntax  : . ~/back_and_clean_alert_log.sh                      |
 # |                                                                     |
 # |                or                                                   |
 # |                                                                     |
-# |                sh ~/back_and_clean_alert_orcl.sh                    |
+# |                sh ~/back_and_clean_alert_log.sh                     |
 # |                                                                     |
 # | Last Modified: 08/09/2016 (dd/mm/yyyy)                              |
+# |                                                                     |
+# | Updated:       13/06/2019 (dd/mm/yyyy)                              |
 # |                                                                     |
 # +---------------------------------------------------------------------+
 
