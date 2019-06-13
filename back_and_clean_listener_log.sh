@@ -2,7 +2,7 @@
 
 # +----------------------------------------------------------------------------+
 # |                                                                            |
-# | File Name    : back_and_clean_listener_orcl.sh                             |
+# | File Name    : back_and_clean_listener_log.sh                              |
 # |                                                                            |
 # | Author       : Quanwen Zhao                                                |
 # |                                                                            |
@@ -10,17 +10,19 @@
 # |                                                                            |
 # |                log file that located in "$ORACLE_BASE/diag/tnslsnr/        |
 # |                                                                            |
-# |                $HOSTNAME/listener/trace" directory on oracle user of Oracle|
+# |                $HOSTNAME/listener/trace" directory on oracle user of       |
 # |                                                                            |
-# |                Database Server.                                            |
+# |                Oracle Database Server.                                     |
 # |                                                                            |
-# | Call Syntax  : . ~/back_and_clean_listener_orcl.sh                         |
+# | Call Syntax  : . ~/back_and_clean_listener_log.sh                          |
 # |                                                                            |
 # |                or                                                          |
 # |                                                                            |
-# |                sh ~/back_and_clean_listener_orcl.sh                        |
+# |                sh ~/back_and_clean_listener_log.sh                         |
 # |                                                                            |
-# | Last Modified: 05/22/2017 (mm/dd/yyyy)                                     |
+# | Last Modified: 22/05/2017 (dd/mm/yyyy)                                     |
+# |                                                                            |
+# | Updated:       13/06/2019 (dd/mm/yyyy)                                     |
 # |                                                                            |
 # +----------------------------------------------------------------------------+
 
@@ -64,13 +66,13 @@ export SIZE=`$DU -m $TRACE/listener.log | $CUT -f1`
 
 # +----------------------------------------------------------------------------+
 # |                                                                            |
-# | IF THE SIZE OF LISTENER.LOG IS GREATER AND EQUAL THAN 512MB,THEN BACKUP    |
+# | IF THE SIZE OF LISTENER.LOG IS GREATER THAN 512 MB, THEN BACKUP AND CLEAN  |
 # |                                                                            |
-# | AND CLEAN THE CONTENT OF IT,OTHERWISE RESERVE.                             |
+# | ITS CURRENT CONTENT, OTHERWISE DO NOTHING.                                 |
 # |                                                                            |
 # +----------------------------------------------------------------------------+
 
-if [ $SIZE -ge 512 ]; then
+if [ $SIZE -gt 512 ]; then
 
   $LSNRCTL set log_status off
 
