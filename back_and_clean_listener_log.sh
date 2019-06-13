@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# crontab setting on linux is as follows:
+
+# 00 01 * * * ~/back_and_clean_listener_log.sh >>/dev/null 2>&1
+
 # +----------------------------------------------------------------------------+
 # |                                                                            |
 # | File Name    : back_and_clean_listener_log.sh                              |
