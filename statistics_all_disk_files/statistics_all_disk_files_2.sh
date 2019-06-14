@@ -9,7 +9,7 @@
 # |------------------------------------------------------------------------|
 # | DATABASE   : Oracle                                                    |
 # |                                                                        |
-# | FILE       : statistics_all_disk_files_new.sh                          |
+# | FILE       : statistics_all_disk_files_2.sh                            |
 # |                                                                        |
 # | CLASS      : LINUX Bourne-Again Shell Scripts                          |
 # |                                                                        |
@@ -44,7 +44,7 @@ export WC=`which wc`
 # +------------------------------------------------------------------------+
 
 export DISK_ARRAY='HDB HDC HDD HDE HDF HDG HDH HDI HDJ HDK HDL HDM HDN HDO'
-export OUTPUT_FILE='/home/oracle/statistics_all_disk_files_new.txt'
+export OUTPUT_FILE='/home/oracle/statistics_all_disk_files_2.txt'
 
 # +------------------------------------------------------------------------+
 # | USING THE "FOR DO ... DONE" TO ACCOMPLISH THAT PURPOSE PREVIOUS        |
