@@ -1,0 +1,14 @@
+run{
+CONFIGURE RETENTION POLICY TO REDUNDANCY 7;
+configure controlfile autobackup on;
+configure controlfile  autobackup format for device type disk to 'E:\backup\test\%F';
+allocate channel c1 type disk ;
+backup database format 'e:\backup\test\test_db_%U'
+plus archivelog format 'e:\backup\test\test_arc_%U';
+release channel c1;
+
+}
+
+crosscheck backupset;
+
+delete noprompt obsolete;
