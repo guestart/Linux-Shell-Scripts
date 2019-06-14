@@ -2,7 +2,7 @@
 
 # The crontab setting on oracle user of local server is as follows:
 
-# 00 05 * * * /u01/oradata01/rman_backup/scp_expdp_parallel_to_remote.sh >/dev/null 2>&1
+# 00 05 * * * /u01/oradata01/rman_backup/scp_expdp_parallel_local_to_remote.sh >/dev/null 2>&1
 
 # +------------------------------------------------------------------------+
 # |                                                                        |
@@ -20,7 +20,7 @@
 # |                                                                        |
 # |  DATABASE   : Oracle                                                   |
 # |                                                                        |
-# |  FILE       : scp_expdp_parallel_to_remote.sh                          |
+# |  FILE       : scp_expdp_parallel_local_to_remote.sh                    |
 # |                                                                        |
 # |  CLASS      : LINUX Bourne-Again Shell Script                          |
 # |                                                                        |
