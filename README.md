@@ -48,6 +48,7 @@
 <h3> SCP: </h3>
 <pre>
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/scp/scp_expdp_parallel_local_to_remote.sh">scp_expdp_parallel_local_to_remote.sh</a> - Copying several files that is gerenated by oracle datapump tool with expdp command from local to another linux server via scp
+</pre>
 <h3> SSH: </h3>
 <pre>
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/ssh/local_trust_ssh_remote.txt">local_trust_ssh_remote.txt</a> - Configuring SSH mutual trust both two linux servers
