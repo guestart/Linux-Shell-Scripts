@@ -31,7 +31,7 @@ export CURRENT_DATE=`$DATE +%Y%m%d%H%M%S`
 # Export and generate dmp and log file of Oracle user about test
 # via expdp command
 
-# $EXPDP test/xxxx@test schemas=test directory=expdp parallel=3 dumpfile=expdp_test_${CURRENT_DATE}_%U.dmp filesize=50G logfile=expdp_test_${CURRENT_DATE}.log statistics=none indexes=n
+# $EXPDP test/xxxx@test schemas=test directory=expdp parallel=3 dumpfile=expdp_test_${CURRENT_DATE}_%U.dmp filesize=50G logfile=expdp_test_${CURRENT_DATE}.log statistics=none
 # If using the above expdp command as you can see the below export message warnings.
 
 # Export: Release 11.2.0.4.0 - Production on Fri Jul 5 14:28:51 2019
@@ -42,14 +42,12 @@ export CURRENT_DATE=`$DATE +%Y%m%d%H%M%S`
 # With the Partitioning, Oracle Label Security, OLAP, Data Mining,
 # Oracle Database Vault and Real Application Testing options
 # Legacy Mode Active due to the following parameters:
-# Legacy Mode Parameter: "indexes=FALSE" Location: Command Line, Replaced with: "exclude=index"  <<==
 # Legacy Mode Parameter: "statistics=none" Location: Command Line, ignored.  <<==
-# Legacy Mode has set reuse_dumpfiles=true parameter.  <<==
+# Legacy Mode has set reuse_dumpfiles=true parameter.
 # ......
 
-# Use the following right expdp command to exclude both statistics and index,
-# because of the previous expdp command still export the statistics info and index.
-$EXPDP test/xxxx@test schemas=test directory=expdp parallel=3 dumpfile=expdp_test_${CURRENT_DATE}_%U.dmp filesize=50G logfile=expdp_test_${CURRENT_DATE}.log exclude=statistics, index
+# Use the following right expdp command to exclude both statistics, because of the previous expdp command still export the statistics info.
+$EXPDP test/xxxx@test schemas=test directory=expdp parallel=3 dumpfile=expdp_test_${CURRENT_DATE}_%U.dmp filesize=50G logfile=expdp_test_${CURRENT_DATE}.log exclude=statistics
 
 ##########################################################
 
