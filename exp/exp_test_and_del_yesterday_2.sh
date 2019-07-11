@@ -1,3 +1,6 @@
+# Author:        Quanwen Zhao
+# Last Updated:  Jul 11, 2019
+
 #!/bin/bash
 
 # The crontab setting on oracle user of linux server is as follows:
