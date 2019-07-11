@@ -31,7 +31,7 @@ export CURRENT_DATE=`$DATE +%Y%m%d%H%M%S`
 # Export and generate dmp and log file of Oracle user about test
 # via expdp command
 
-# $EXPDP test/xxxx@test schemas=test directory=expdp parallel=3 dumpfile=expdp_test_${CURRENT_DATE}_%U.dmp filesize=50G logfile=expdp_test_${CURRENT_DATE}.log statistics=none indexes=y
+# $EXPDP test/xxxx@test schemas=test directory=expdp parallel=3 dumpfile=expdp_test_${CURRENT_DATE}_%U.dmp filesize=50G logfile=expdp_test_${CURRENT_DATE}.log statistics=none indexes=n
 # If using the above expdp command as you can see the below export message warnings.
 
 # Export: Release 11.2.0.4.0 - Production on Fri Jul 5 14:28:51 2019
