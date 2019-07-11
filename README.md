@@ -9,10 +9,12 @@
 <h3> EXP: </h3>
 <pre>
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/exp/exp_test_and_del_yesterday.sh">exp_test_and_del_yesterday.sh</a> - Exporting (logical backup with exp command) today's dmp files with specific user(s) and then deleting yesterday's
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/exp/exp_test_and_del_yesterday_2.sh">exp_test_and_del_yesterday_2.sh</a> - The 2nd version of "exp_test_and_del_yesterday.sh", by the way adding four number of new parameters - "direct, buffer, feedback and recordlength" at the end of EXP command
 </pre>
 <h3> EXPDP: </h3>
 <pre>
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/expdp/expdp_test_and_del_yesterday.sh">expdp_test_and_del_yesterday.sh</a> - Exporting (logical backup with expdp command) today's dmp files with specific user(s) and then deleting yesterday's
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/expdp/expdp_test_and_del_yesterday_2.sh">expdp_test_and_del_yesterday_2.sh</a> - The 2nd version of "expdp_test_and_del_yesterday.sh", by the way adding a new parameter compression at the end of EXPDP command
 </pre>
 <h3> Linux Logo: </h3>
 <pre>
