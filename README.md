@@ -6,6 +6,10 @@
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/adg/check_dg_redo_apply.sql">check_dg_redo_apply.sql</a> - Checking redo data apply on physical standby database of Oracle Active Data Guard
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/adg/check_dg_redo_apply.sh">check_dg_redo_apply.sh</a> - The shell script calling the previous "check_dg_redo_apply.sql"
 </pre>
+<h3> DIG LISTENER LOG: </h3>
+<pre>
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/dig_listener_log_xml/mining_listener_logxml_review_appserver_ip.sh">mining_listener_logxml_review_appserver_ip.sh</a> - Reviewing real IP Address connecting to oracle database recently via mining listener log file with xml format
+</pre>
 <h3> EXP: </h3>
 <pre>
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/exp/exp_test_and_del_yesterday.sh">exp_test_and_del_yesterday.sh</a> - Exporting (logical backup with exp command) today's dmp files with specific user(s) and then deleting yesterday's
