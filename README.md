@@ -8,7 +8,7 @@
 </pre>
 <h3> DIG LISTENER LOG: </h3>
 <pre>
-<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/dig_listener_log_xml/mining_listener_logxml_review_appserver_ip.sh">mining_listener_logxml_review_appserver_ip.sh</a> - Reviewing real IP Address connecting to oracle database recently via mining listener log file with xml format
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/dig_listener_log_xml/dig_ip_via_listener_log_xml.sh">dig_ip_via_listener_log_xml.sh</a> - Digging real IP Address connecting to oracle database server recently via oracle listener log file "log.xml"
 </pre>
 <h3> EXP: </h3>
 <pre>
