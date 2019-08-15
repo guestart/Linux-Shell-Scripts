@@ -56,7 +56,7 @@ listener_log=`lsnrctl status ${listener_name} | awk '/Listener Log File/ {print 
 echo
 echo "========================================================================================"
 echo "#                                                                                      #"
-echo "# Now this Bash shell script will generate dig_listener_log_xml_`date +%Y%m%d`.lst     #"
+echo "# Now this Bash shell script will generate dig_(ip)_listener_log_xml_`date +%Y%m%d`.lst      #"
 echo "#                                                                                      #"
 echo "# Please patiently waiting for a while ......                                          #"
 echo "#                                                                                      #"
