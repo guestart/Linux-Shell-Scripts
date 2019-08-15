@@ -18,20 +18,19 @@
 # |                                                                       |
 # | Os env     : Linux                                                    |
 # |                                                                       |
-# | File       : mining_listener_logxml_review_appserver_ip.sh            |
+# | File       : dig_ip_via_listener_log_xml.sh                           |
 # |                                                                       |
 # | Class      : Linux Bash script                                        |
 # |                                                                       |
-# | Purpose    : This bash script file used to review ip list of          |
+# | Purpose    : This bash script file used to dig/mine all ip addresses  |
 # |                                                                       |
-# |              application server connecting to oracle database         |
+# |              connecting to oracle database server recently via oracle |
 # |                                                                       |
-# |              recently via mining listener log file with xml format.   |
-# |                                                                       |
+# |              listener log file "log.xml".                             |
 # |                                                                       |
 # | Parameters : None.                                                    |
 # |                                                                       |
-# | Modified   : 05/27/2019 (mm/dd/yyyy)                                  |
+# | Modified   : 08/15/2019 (mm/dd/yyyy)                                  |
 # |                                                                       |
 # | Note       : As with any code, ensure to test this script in a        |
 # |                                                                       |
@@ -57,7 +56,7 @@ listener_log=`lsnrctl status ${listener_name} | awk '/Listener Log File/ {print 
 echo
 echo "========================================================================================"
 echo "#                                                                                      #"
-echo "# Now this Bash shell script will generate mining_logxml_appserver_ip_`date +%Y%m%d`.lst     #"
+echo "# Now this Bash shell script will generate dig_listener_log_xml_`date +%Y%m%d`.lst     #"
 echo "#                                                                                      #"
 echo "# Please patiently waiting for a while ......                                          #"
 echo "#                                                                                      #"
@@ -66,7 +65,7 @@ echo
 echo 'Begin time: '$(${DATE_TIME} '+%Y-%m-%d %H:%M:%S')
 echo
 
-cat ${listener_log} | grep "HOST=" | grep establish | awk -F'=' '{print $(NF-1)}' | cut -d')' -f1 | sort -n | uniq > ~/odris_linux/report/mining_logxml_appserver_ip_`date +%Y%m%d`.lst
+cat ${listener_log} | grep "HOST=" | grep establish | awk -F'=' '{print $(NF-1)}' | cut -d')' -f1 | sort -n | uniq > ~/dig_listener_log_xml_`date +%Y%m%d`.lst
 
 # +-----------------------------------------------------------------------+
 # |                                                                       |
@@ -80,7 +79,7 @@ cat ${listener_log} | grep "HOST=" | grep establish | awk -F'=' '{print $(NF-1)}
 # |                                                                       |
 # +-----------------------------------------------------------------------+
 
-cat ~/odris_linux/report/mining_logxml_appserver_ip_`date +%Y%m%d`.lst | grep -E  "([0-9]{1,3}\.){3}[0-9]{1,3}" | sort -n | uniq >  ~/odris_linux/report/appserver_ip_`date +%Y%m%d`.lst
+cat ~/dig_listener_log_xml_`date +%Y%m%d`.lst | grep -E  "([0-9]{1,3}\.){3}[0-9]{1,3}" | sort -n | uniq > ~/dig_ip_listener_log_xml_`date +%Y%m%d`.lst
 
 echo "============================================================================================"
 echo "#                                                                                          #"
@@ -88,7 +87,7 @@ echo "# As you can see, the previous mentioned two files have been listed by fol
 echo "#                                                                                          #"
 echo "============================================================================================"
 echo
-ls -lrth ~/odris_linux/report/*`date +%Y%m%d`.lst | awk '{print $NF}'
+ls -lrth ~/*`date +%Y%m%d`.lst | awk '{print $NF}'
 echo
 echo 'End time: '$(${DATE_TIME} '+%Y-%m-%d %H:%M:%S')
 echo
