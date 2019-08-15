@@ -56,7 +56,7 @@ listener_log=`lsnrctl status ${listener_name} | awk '/Listener Log File/ {print 
 echo
 echo "========================================================================================"
 echo "#                                                                                      #"
-echo "# Now this Bash shell script will generate dig_(ip)_listener_log_xml_`date +%Y%m%d`.lst      #"
+echo "# Now this Bash shell script will generate dig_ip_via_listener_log_xml_`date +%Y%m%d`.lst      #"
 echo "#                                                                                      #"
 echo "# Please patiently waiting for a while ......                                          #"
 echo "#                                                                                      #"
@@ -79,7 +79,7 @@ cat ${listener_log} | grep "HOST=" | grep establish | awk -F'=' '{print $(NF-1)}
 # |                                                                       |
 # +-----------------------------------------------------------------------+
 
-cat ~/dig_listener_log_xml_`date +%Y%m%d`.lst | grep -E  "([0-9]{1,3}\.){3}[0-9]{1,3}" | sort -n | uniq > ~/dig_ip_listener_log_xml_`date +%Y%m%d`.lst
+cat ~/dig_listener_log_xml_`date +%Y%m%d`.lst | grep -E  "([0-9]{1,3}\.){3}[0-9]{1,3}" | sort -n | uniq > ~/dig_ip_via_listener_log_xml_`date +%Y%m%d`.lst
 
 echo "============================================================================================"
 echo "#                                                                                          #"
@@ -87,7 +87,7 @@ echo "# As you can see, the previous mentioned two files have been listed by fol
 echo "#                                                                                          #"
 echo "============================================================================================"
 echo
-ls -lrth ~/*`date +%Y%m%d`.lst | awk '{print $NF}'
+ls -lrth ~/dig_ip_via_listener_log_xml_`date +%Y%m%d`.lst | awk '{print $NF}'
 echo
 echo 'End time: '$(${DATE_TIME} '+%Y-%m-%d %H:%M:%S')
 echo
