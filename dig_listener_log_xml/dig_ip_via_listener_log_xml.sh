@@ -56,7 +56,7 @@ listener_log=`lsnrctl status ${listener_name} | awk '/Listener Log File/ {print 
 echo
 echo "========================================================================================"
 echo "#                                                                                      #"
-echo "# Now this Bash shell script will generate dig_ip_via_listener_log_xml_`date +%Y%m%d`.lst      #"
+echo "# Now this Bash shell script will generate dig_ip_via_listener_log_xml_`date +%Y%m%d`.lst    #"
 echo "#                                                                                      #"
 echo "# Please patiently waiting for a while ......                                          #"
 echo "#                                                                                      #"
@@ -83,7 +83,7 @@ cat ~/dig_listener_log_xml_`date +%Y%m%d`.lst | grep -E  "([0-9]{1,3}\.){3}[0-9]
 
 echo "============================================================================================"
 echo "#                                                                                          #"
-echo "# As you can see, the previous mentioned two files have been listed by following location. #"
+echo "# As you can see, the previously mentioned lst file has been listed by following location. #"
 echo "#                                                                                          #"
 echo "============================================================================================"
 echo
