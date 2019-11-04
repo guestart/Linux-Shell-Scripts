@@ -8,7 +8,7 @@
 # |                                                                            |
 # | Description  : This bash script file used to remove listener log xml file  |
 # |                                                                            |
-# |                that located in "$ORACLE_BASE/diag/tnslsnr/localhost14      |
+# |                that located in "$ORACLE_BASE/diag/tnslsnr/$HOSTNAME        |
 # |                                                                            |
 # |                /listener/alert" directory on oracle user of Oracle         |
 # |                                                                            |
@@ -38,16 +38,17 @@ source ~/.bash_profile;
 # |                                                                            |
 # | AND DIRECTORY                                                              |
 # |                                                                            |
-# +----------------------------------------------------------------------------+ 
+# +----------------------------------------------------------------------------+
 
 export AWK=`which awk`
 export ECHO=`which echo`
 export GREP=`which grep`
+export HOSTNAME=`which hostname`
 export LS=`which ls`
 export RM=`which rm`
 export WC=`which wc`
 
-cd /u01/app/oracle/diag/tnslsnr/localhost14/listener/alert/
+cd /u01/app/oracle/diag/tnslsnr/`$HOSTNAME`/listener/alert/
 
 file_name=`$LS --full-time | $GREP '2018' | $AWK '{print $9}'`
 file_count=`$LS --full-time | $GREP '2018' | $AWK '{print $9}' | $WC -l`
