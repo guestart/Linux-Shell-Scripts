@@ -101,6 +101,7 @@ release channel d2;
 release channel d1;
 }
 crosscheck backup;
+crosscheck archivelog all;
 exit;
 EOF
 
@@ -141,6 +142,7 @@ release channel d2;
 release channel d1;
 }
 crosscheck backup;
+crosscheck archivelog all;
 exit;
 EOF
 ;;
