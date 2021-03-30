@@ -34,6 +34,8 @@
 # |                                                                        |
 # | Last Modified: 11/10/2016 (dd/mm/yyyy)                                 |
 # |                                                                        |
+# | Last Updated : 30/03/2021 (dd/mm/yyyy)                                 |
+# |                                                                        |
 # +------------------------------------------------------------------------+
 
 # +------------------------------------------------------------------------+
@@ -127,6 +129,9 @@ EOF
 # +------------------------------------------------------------------------+
 
 $FIND $BACK_PATH -type d -empty -exec rmdir {} \;
+
+# adding the content about removing $BACK_LOG whose creating time is older than 6 days.
+$FIND $BACK_LOG -name "*.log" -mtime +6 -exec rm -rf {} \;
 ;;
 
 1|2|3|4|6|7)
