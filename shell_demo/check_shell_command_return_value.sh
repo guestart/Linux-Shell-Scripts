@@ -20,7 +20,7 @@
 # |                                                                        |
 # | Description  : This bash script file used to check the return value    |
 # |                                                                        |
-# |                of prior SHELL command has finished running.            |
+# |                of prior SHELL command that has finished running.       |
 # |                                                                        |
 # | Call Syntax  : . /tmp/check_shell_command_return_value.sh              |
 # |                                                                        |
