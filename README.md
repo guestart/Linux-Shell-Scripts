@@ -61,7 +61,8 @@
 </pre>
 <h3> SHELL Demo: </h3>
 <pre>
-<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/shell_demo/test_mkdir.sh">test_mkdir.sh</a> - test creating a directory after obtaining the previous location by "basename".
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/shell_demo/check_shell_command_return_value.sh">check_shell_command_return_value.sh</a> - Checking the return value of prior SHELL command has finished running
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/shell_demo/test_mkdir.sh">test_mkdir.sh</a> - Creating a directory after obtaining the previous location by "basename"
 </pre>
 <h3> SSH: </h3>
 <pre>
