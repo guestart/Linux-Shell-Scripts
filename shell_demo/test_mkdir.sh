@@ -45,8 +45,8 @@ function cp_oracle () {
 cp_oracle /tmp/rman_backup/expdp /tmp/back
 
 # The following demo is the result what I can expect.
-# [oracle@ysyk_back tmp]$ . /tmp/test.sh
-# [oracle@ysyk_back tmp]$ 
-# [oracle@ysyk_back tmp]$ cd back/
-# [oracle@ysyk_back back]$ ls
+# [oracle@sync_back tmp]$ . /tmp/test.sh
+# [oracle@sync_back tmp]$ 
+# [oracle@sync_back tmp]$ cd back/
+# [oracle@sync_back back]$ ls
 # expdp
