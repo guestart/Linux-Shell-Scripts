@@ -61,6 +61,7 @@
 </pre>
 <h3> SHELL Demo: </h3>
 <pre>
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/shell_demo/check_oracle_instance_nums.sh">check_oracle_instance_nums.sh</a> - Checking how many instances in your Oracle Database Server
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/shell_demo/check_shell_command_return_value.sh">check_shell_command_return_value.sh</a> - Checking the return value of prior SHELL command that has finished running
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/shell_demo/test_mkdir.sh">test_mkdir.sh</a> - Creating a directory after obtaining the previous location by "basename"
 </pre>
