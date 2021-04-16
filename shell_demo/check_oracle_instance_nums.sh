@@ -77,3 +77,10 @@ else
 fi
 
 $CAT ${INSTANCE_NAME_TMPFILE}
+
+# The following demo is the returned outcome when executing the previous SHELL script on my Oracle Database test server.
+# [oracle@testdb ~]$ ./check_oracle_instance_nums.sh
+# testdb1
+# testdb2
+# testdb3
+# [oracle@testdb ~]$ 
