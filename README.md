@@ -34,6 +34,10 @@
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/oracle_logo_banner/oracle_logo_2.sh">oracle_logo_2.sh</a> - The 2nd version showing banner logo of oracle database server
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/oracle_logo_banner/oracle_logo_3.sh">oracle_logo_3.sh</a> - The 3rd version showing banner logo of oracle database server
 </pre>
+<h3> Oracle Service: </h3>
+<pre>
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/oracle_service/oracle">oracle</a> - Being able to run the service "oracle" for automatically open the Oracle Database in case of Linux (OS) restarts
+</pre>
 <h3> RMAN Backup: </h3>
 <pre>
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/rman_backup/rman_backup.sh">rman_backup.sh</a> - Doing rman backup one week via rman utility on oracle database server
