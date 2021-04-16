@@ -1,0 +1,126 @@
+#!/bin/bash
+# chkconfig: 2345 20 80
+# description: Oracle Database self-startup script with the dbstart that has located in $ORACLE_HOME/bin.
+# The previous 2 lines is what the chkconfig must require.
+
+# In order to be able to run the service "oracle" for automatically open the Oracle Database
+# in case of Linux (OS) restarts.
+
+export AWK=`which awk`
+export BASENAME=`which basename`
+export CAT=`which cat`
+export CHMOD=`which chmod`
+export CP=`which cp`
+export CUT=`which cut`
+export ECHO=`which echo`
+export FIND=`which find`
+export GREP=`which grep`
+export SED=`which sed`
+export SORT=`which sort`
+export SU=`which su`
+export WC=`which wc`
+
+export ORA_OWNER=oracle
+export ORA_HOME=`$SU - ${ORA_OWNER} -c "dbhome"`
+export ORA_LOGFILE=/var/log/oracle.log
+
+export SPFILE_LOC_LIST=  
+export INSTANCE_NUM=`$FIND ${ORA_HOME}/dbs -name "spfile*.ora" | $WC -l`
+export INSTANCE_NAME_TMPFILE=/tmp/instance_name_list.lst
+
+export ENTRY_NUM=`$CAT /etc/oratab | $GREP "${ORA_HOME}" | $WC -l`
+
+export GET_VALUE=
+export OPTION=
+
+> ${INSTANCE_NAME_TMPFILE}
+# You need manually create it in case the file "/etc/oratab" doesn't exist
+# and then add the entry "$ORACLE_SID:$ORACLE_HOME:Y".
+if [ ! -f /etc/oratab ]; then
+  $TOUCH /etc/oratab
+  $ECHO "# A colon, ':', is used as the field terminator.  A new line terminates" >> /etc/oratab
+  $ECHO "# the entry.  Lines beginning with a pound sign, '#', are comments." >> /etc/oratab
+  $ECHO "#" >> /etc/oratab
+  $ECHO "# Entries are of the form:" >> /etc/oratab
+  $ECHO "#   \$ORACLE_SID:\$ORACLE_HOME:<N|Y>:" >> /etc/oratab
+  $ECHO "#" >> /etc/oratab
+  $ECHO "# The first and second fields are the system identifier and home" >> /etc/oratab
+  $ECHO "# directory of the database respectively.  The third field indicates" >> /etc/oratab
+  $ECHO "# to the dbstart utility that the database should , "Y", or should not," >> /etc/oratab
+  $ECHO "# "N", be brought up at system boot time." >> /etc/oratab
+  $ECHO "#" >> /etc/oratab
+  $ECHO "# Multiple entries with the same \$ORACLE_SID are not allowed." >> /etc/oratab
+  $ECHO "#" >> /etc/oratab
+  $ECHO "#" >> /etc/oratab
+  # Checking how many instance(s) in your Oracle Database server.
+  if [ ${INSTANCE_NUM} -gt 1 ]; then
+    SPFILE_LOC_LIST=`$FIND ${ORA_HOME}/dbs -name "spfile*.ora" | $SORT -n`
+    for n in ${SPFILE_LOC_LIST}
+    do
+      $BASENAME $n | $CUT -d'.' -f1 | $AWK '{print substr($1, length("spfile")+1)}' >> ${INSTANCE_NAME_TMPFILE}
+      $ECHO "`$CAT ${INSTANCE_NAME_TMPFILE}`:${ORA_HOME}:Y" >> /etc/oratab
+    done
+  else
+    $BASENAME ${SPFILE_LOC_LIST} | $CUT -d'.' -f1 | $AWK '{print substr($1, length("spfile")+1)}'>> ${INSTANCE_NAME_TMPFILE}
+    $ECHO "`$CAT ${INSTANCE_NAME_TMPFILE}`:${ORA_HOME}:Y" >> /etc/oratab
+  fi
+  # Changing the file mode bits of file "/etc/oratab" to become "664".
+  $CHMOD 664 /etc/oratab 
+else
+  # You need to modify the entry "$ORACLE_SID:$ORACLE_HOME:N" to "...:...Y" in the file "/etc/oratab".
+  $CP /etc/oratab /etc/oratab.bak
+  $SED -i 's/:N/:Y/g' /etc/oratab
+fi
+
+if [ ! -f ${ORA_HOME}/bin/dbstart ] || [ ! -f ${ORA_HOME}/bin/dbshut ]; then
+  $ECHO "Error: Missing the script file ${ORA_HOME}/bin/dbstart or ${ORA_HOME}/bin/dbshut!" >> ${ORA_lOGFILE}
+else
+  # In order to prevent dbstart or dbshut from returning the following 2 line of prompt messages.
+  # Since ORACLE_HOME is not set, cannot auto-stop Oracle Net Listener
+  # Usage: ${ORACLE_HOME}/bin/dbstart ORACLE_HOME
+  # or
+  # Since ORACLE_HOME is not set, cannot auto-stop Oracle Net Listener
+  # Usage: ${ORACLE_HOME}/bin/dbshut ORACLE_HOME
+  # You need to set the "$1"'s value of string "ORACLE_HOME_LISTNER=$1" to the value of variable ORACLE_HOME.
+  GET_VALUE=`$CAT ${ORA_HOME}/bin/dbstart | $GREP "ORACLE_HOME_LISTNER=$1" | $CUT -d'=' -f2 | $CUT -d'$' -f2`
+  # https://www.cnblogs.com/Cherie/p/3200294.html
+  if [ "${GET_VALUE}" == "1" ]; then
+    $CP ${ORA_HOME}/bin/dbstart ${ORA_HOME}/bin/dbstart.bak
+    # https://blog.csdn.net/weixin_40501169/article/details/85610005
+    # https://www.cnblogs.com/2bjiujiu/p/9029598.html
+    $SED -i "s#ORACLE_HOME_LISTNER=\$1#ORACLE_HOME_LISTNER=${ORA_HOME}#" ${ORA_HOME}/bin/dbstart
+  fi
+  GET_VALUE=`$CAT ${ORA_HOME}/bin/dbshut | $GREP "ORACLE_HOME_LISTNER=$1" | $CUT -d'=' -f2 | $CUT -d'$' -f2`
+  # https://www.cnblogs.com/Cherie/p/3200294.html
+  if [ "${GET_VALUE}" == "1" ]; then
+    $CP ${ORA_HOME}/bin/dbshut ${ORA_HOME}/bin/dbshut.bak
+    # https://blog.csdn.net/weixin_40501169/article/details/85610005
+    # https://www.cnblogs.com/2bjiujiu/p/9029598.html
+    $SED -i "s#ORACLE_HOME_LISTNER=\$1#ORACLE_HOME_LISTNER=${ORA_HOME}#" ${ORA_HOME}/bin/dbshut
+  fi
+  OPTION=$1
+  case "${OPTION}" in
+  start)
+    $ECHO "$0 : (start oracle database ...)"
+    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbstart" >> ${ORA_LOGFILE}
+    exit 0
+    ;;
+  stop)
+    $ECHO "$0 : (shutdown oracle database ...)"
+    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbshut" >> ${ORA_LOGFILE}
+    exit 0
+    ;;
+  restart)
+    $ECHO "$0 : (shutdown oracle database ...)"
+    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbshut" >> ${ORA_LOGFILE}
+    $ECHO "$0 : (start oracle database ...)"
+    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbstart" >> ${ORA_LOGFILE}
+    exit 0
+    ;;
+  *)
+    $ECHO "Usage: $0 [start|stop|restart]"
+    $ECHO "Invalid argument: \"${OPTION}\""
+    exit 2
+    ;;
+  esac
+fi
