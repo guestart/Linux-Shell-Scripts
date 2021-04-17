@@ -1,15 +1,16 @@
 #!/bin/bash
 # chkconfig: 2345 20 80
-# description: Oracle Database self-startup script with the dbstart that has located in $ORACLE_HOME/bin.
+# description: Oracle Database self-startup script with the dbstart (and self-shutdown script with the dbshut) that has located in $ORACLE_HOME/bin.
 # The previous 2 lines is what the chkconfig must require.
 
-# In order to be able to run the service "oracle" for automatically open the Oracle Database
-# in case of Linux (OS) restarts.
+# This bash SHELL script is able to run the service "oracle" via start to startup the Oracle Database
+# and via stop to shutdown the Oracle Database.
 
 export AWK=`which awk`
 export BASENAME=`which basename`
 export CAT=`which cat`
 export CHMOD=`which chmod`
+export CHOWN=`which chown`
 export CP=`which cp`
 export CUT=`which cut`
 export ECHO=`which echo`
@@ -65,10 +66,13 @@ if [ ! -f /etc/oratab ]; then
     $ECHO "`$CAT ${INSTANCE_NAME_TMPFILE}`:${ORA_HOME}:Y" >> /etc/oratab
   fi
   # Changing the file mode bits of file "/etc/oratab" to become "664".
-  $CHMOD 664 /etc/oratab 
+  $CHOWN oracle:oinstall /etc/oratab
+  $CHMOD 664 /etc/oratab
 else
   # You need to modify the entry "$ORACLE_SID:$ORACLE_HOME:N" to "...:...Y" in the file "/etc/oratab".
   $CP /etc/oratab /etc/oratab.bak
+  $CHOWN oracle:oinstall /etc/oratab.bak
+  $CHMOD 664 /etc/oratab.bak
   $SED -i 's/:N/:Y/g' /etc/oratab
 fi
 
@@ -82,39 +86,39 @@ else
   # Since ORACLE_HOME is not set, cannot auto-stop Oracle Net Listener
   # Usage: ${ORACLE_HOME}/bin/dbshut ORACLE_HOME
   # You need to set the "$1"'s value of string "ORACLE_HOME_LISTNER=$1" to the value of variable ORACLE_HOME.
-  GET_VALUE=`$CAT ${ORA_HOME}/bin/dbstart | $GREP "ORACLE_HOME_LISTNER=$1" | $CUT -d'=' -f2 | $CUT -d'$' -f2`
-  # https://www.cnblogs.com/Cherie/p/3200294.html
-  if [ "${GET_VALUE}" == "1" ]; then
-    $CP ${ORA_HOME}/bin/dbstart ${ORA_HOME}/bin/dbstart.bak
-    # https://blog.csdn.net/weixin_40501169/article/details/85610005
-    # https://www.cnblogs.com/2bjiujiu/p/9029598.html
-    $SED -i "s#ORACLE_HOME_LISTNER=\$1#ORACLE_HOME_LISTNER=${ORA_HOME}#" ${ORA_HOME}/bin/dbstart
-  fi
-  GET_VALUE=`$CAT ${ORA_HOME}/bin/dbshut | $GREP "ORACLE_HOME_LISTNER=$1" | $CUT -d'=' -f2 | $CUT -d'$' -f2`
-  # https://www.cnblogs.com/Cherie/p/3200294.html
-  if [ "${GET_VALUE}" == "1" ]; then
-    $CP ${ORA_HOME}/bin/dbshut ${ORA_HOME}/bin/dbshut.bak
-    # https://blog.csdn.net/weixin_40501169/article/details/85610005
-    # https://www.cnblogs.com/2bjiujiu/p/9029598.html
-    $SED -i "s#ORACLE_HOME_LISTNER=\$1#ORACLE_HOME_LISTNER=${ORA_HOME}#" ${ORA_HOME}/bin/dbshut
-  fi
+  # GET_VALUE=`$CAT ${ORA_HOME}/bin/dbstart | $GREP "ORACLE_HOME_LISTNER=$1" | $CUT -d'=' -f2`
+  # # https://www.cnblogs.com/Cherie/p/3200294.html
+  # if [ "${GET_VALUE}" == "\$1" ]; then
+  #   $CP ${ORA_HOME}/bin/dbstart ${ORA_HOME}/bin/dbstart.bak
+  #   # https://blog.csdn.net/weixin_40501169/article/details/85610005
+  #   # https://www.cnblogs.com/2bjiujiu/p/9029598.html
+  #   $SED -i "s#ORACLE_HOME_LISTNER=\$1#ORACLE_HOME_LISTNER=${ORA_HOME}#" ${ORA_HOME}/bin/dbstart
+  # fi
+  # GET_VALUE=`$CAT ${ORA_HOME}/bin/dbshut | $GREP "ORACLE_HOME_LISTNER=$1" | $CUT -d'=' -f2`
+  # # https://www.cnblogs.com/Cherie/p/3200294.html
+  # if [ "${GET_VALUE}" == "\$1" ]; then
+  #   $CP ${ORA_HOME}/bin/dbshut ${ORA_HOME}/bin/dbstart.bak
+  #   # https://blog.csdn.net/weixin_40501169/article/details/85610005
+  #   # https://www.cnblogs.com/2bjiujiu/p/9029598.html
+  #   $SED -i "s#ORACLE_HOME_LISTNER=\$1#ORACLE_HOME_LISTNER=${ORA_HOME}#" ${ORA_HOME}/bin/dbshut
+  # fi
   OPTION=$1
   case "${OPTION}" in
   start)
     $ECHO "$0 : (start oracle database ...)"
-    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbstart" >> ${ORA_LOGFILE}
+    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbstart ${ORA_HOME}" >> ${ORA_LOGFILE}
     exit 0
     ;;
   stop)
     $ECHO "$0 : (shutdown oracle database ...)"
-    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbshut" >> ${ORA_LOGFILE}
+    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbshut ${ORA_HOME}" >> ${ORA_LOGFILE}
     exit 0
     ;;
   restart)
     $ECHO "$0 : (shutdown oracle database ...)"
-    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbshut" >> ${ORA_LOGFILE}
+    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbshut ${ORA_HOME}" >> ${ORA_LOGFILE}
     $ECHO "$0 : (start oracle database ...)"
-    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbstart" >> ${ORA_LOGFILE}
+    $SU - ${ORA_OWNER} -c "${ORA_HOME}/bin/dbstart ${ORA_HOME}" >> ${ORA_LOGFILE}
     exit 0
     ;;
   *)
