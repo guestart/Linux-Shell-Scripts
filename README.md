@@ -59,6 +59,10 @@
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/rotate_process_file/retention_expdp_test_dump_file_2days.sh">retention_expdp_test_dump_file_2days.sh</a> - Deleting all of expdp's dmp file about user "test" on oracle database 2 days before
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/rotate_process_file/rotate_reserve_base_dmp.sh">rotate_reserve_base_dmp.sh</a> - Periodically removing some earliest so far 7 number of "xxxx_base_xxxx.dmp" file, which located in directory "/u01/oradata" on oracle user for keeping sufficient disk space in reserve
 </pre>
+<h3> RSYNC: </h3>
+<pre>
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/rsync/rsync_backup_with_log_refresh.sh">rsync_backup_with_log_refresh.sh</a> - Rsyncing oracle backup files from REMOTE server to local
+</pre>
 <h3> SCP: </h3>
 <pre>
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/scp/scp_expdp_parallel_local_to_remote.sh">scp_expdp_parallel_local_to_remote.sh</a> - Copying several files that is gerenated by oracle datapump tool with expdp command from local to another linux server via scp
