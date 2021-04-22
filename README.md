@@ -36,6 +36,7 @@
 </pre>
 <h3> Oracle Service: </h3>
 <pre>
+<a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/oracle_service/automatically_open_oracle.sh">automatically_open_oracle.sh</a> - Invoking this SHELL script in /etc/rc.local in order to be able to automatically startup oracle database after restarting server
 <a href="https://github.com/guestart/Linux-Shell-Scripts/blob/master/oracle_service/oracle">oracle</a> - Being able to run the service "oracle" for automatically open the Oracle Database in case of Linux (OS) restarts
 </pre>
 <h3> RMAN Backup: </h3>
