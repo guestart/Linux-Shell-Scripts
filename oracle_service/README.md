@@ -15,7 +15,7 @@
   [root@test init.d]# ls -lrht oracle
   -rwxr-xr-x 1 root root 5.4K Apr 17 10:40 oracle
   ```
-  - ##### Adding this new service `oracle` for management by chkconfig
+  - ##### Adding this new service `oracle` for management by `chkconfig`
   ```bash
   [root@test init.d]# chkconfig --add oracle
   [root@test init.d]# 
