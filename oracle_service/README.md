@@ -34,7 +34,7 @@
   
   oracle          0:off   1:off   2:on    3:on    4:on    5:on    6:off
   ```
-  - ##### You can also **start**, **stop** or **restart** the service `oracle` via **service** command
+  - ##### You can also restart, stop or start the service `oracle` via `service` command
   ```bash
   [root@test ~]# service oracle restart
   /etc/init.d/oracle : (shutdown oracle database ...)
@@ -58,11 +58,6 @@
    TNS-12560: TNS:protocol adapter error
     TNS-00511: No listener
      Linux Error: 111: Connection refused
-  Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC1521)))
-  TNS-12541: TNS:no listener
-   TNS-12560: TNS:protocol adapter error
-    TNS-00511: No listener
-     Linux Error: 2: No such file or directory
   [oracle@test ~]$ 
   [oracle@test ~]$ exit
   [root@test ~]# service oracle start
@@ -336,5 +331,5 @@ touch /var/lock/subsys/local
 
 ### 3. License
 
-`RSYNC` is licensed under the **GNU** (a recursive acronym for "GNU's Not Unix!"), the Version `3.0` of `GENERAL PUBLIC LICENSE`.
+`oracle_service` is licensed under the **GNU** (a recursive acronym for "GNU's Not Unix!"), the Version `3.0` of `GENERAL PUBLIC LICENSE`.
 You may obtain a copy of the License at <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL 3.0</a>.
