@@ -89,7 +89,7 @@ if [ "${clu_db}" = "TRUE" ] && [ "${db_role}" = "PRIMARY" -o "${db_role}" = "PHY
     do
       if [ "${i}" != "${db_unq_name}" ]; then 
         tns=${i}
-        tns_remote=$(sed '/^$/d' ${orac_home}/network/admin/tnsnames.ora | sed 's/ //g' | sed ':a;N;$!ba;s/\=\n/\=/g' | sed ':a;N;$!ba;s/\n(/(/g' | sed ':a;N;$!ba;s/\n)/)/g' | grep -i "\<${tns}\>")
+        tns_remote=$(sed '/^$/d' ${orac_home}/network/admin/tnsnames.ora | sed 's/ //g' | sed ':a;N;$!ba;s/\=\n/\=/g' | sed ':a;N;$!ba;s/\n(/(/g' | sed ':a;N;$!ba;s/\n)/)/g' | grep -w "\<${tns}\>")
         hostname_remote=$(echo ${tns_remote} | awk -F 'HOST=' '{print $2}' | awk -F ')' '{print $1}')
         regex="\b(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[1-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[1-9])\b"
         check_step=$(echo ${hostname_remote} | egrep $regex | wc -l)
@@ -145,7 +145,7 @@ elif [ "${clu_db}" = "FALSE" ] && [ "${db_role}" = "PRIMARY" -o "${db_role}" = "
     do
       if [ "${i}" != "${db_unq_name}" ]; then 
         tns=${i}
-        tns_remote=$(sed '/^$/d' ${orac_home}/network/admin/tnsnames.ora | sed 's/ //g' | sed ':a;N;$!ba;s/\=\n/\=/g' | sed ':a;N;$!ba;s/\n(/(/g' | sed ':a;N;$!ba;s/\n)/)/g' | grep -i "\<${tns}\>")
+        tns_remote=$(sed '/^$/d' ${orac_home}/network/admin/tnsnames.ora | sed 's/ //g' | sed ':a;N;$!ba;s/\=\n/\=/g' | sed ':a;N;$!ba;s/\n(/(/g' | sed ':a;N;$!ba;s/\n)/)/g' | grep -w "\<${tns}\>")
         hostname_remote=$(echo ${tns_remote} | awk -F 'HOST=' '{print $2}' | awk -F ')' '{print $1}')
         regex="\b(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[1-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[1-9])\b"
         check_step=$(echo ${hostname_remote} | egrep $regex | wc -l)
