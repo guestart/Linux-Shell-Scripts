@@ -64,3 +64,19 @@ eof`
   fi
   echo "The Oracle Database Archived Log used percent is: ${arch_used_percent}%."
 fi
+
+-- RAC ASM:
+[oracle@yyds01 ~]$ ./check_arch_used_percent.sh 
+The Oracle Database Archived Log used percent is: 17.69%.
+
+-- File System:
+[oracle@demo50 ~]$ ./check_arch_used_percent.sh 
+The Oracle Database Archived Log used percent is: 1.33%.
+
+-- Flash Recovery Area:
+[oracle@rhel76 ~]$ ./check_arch_used_percent.sh 
+The Oracle Database Archived Log used percent is: 4.22%.
+
+-- No Archive Mode:
+k8s227:/home/oracle/$./check_arch_used_percent.sh 
+The Oracle Database has been in No Archive Mode.
