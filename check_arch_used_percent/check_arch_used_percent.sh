@@ -46,6 +46,7 @@ aug as
         case af.redundancy
           when 'MIRROR' then af.used_gb/2
           when 'HIGH'   then af.used_gb/3
+          else af.used_gb
         end act_used_gb
  from af
 )
