@@ -8,7 +8,7 @@ exit;
 eof`
 
 if [ "${db_version}" == "19" ]; then
-  srvctl modify asm -count
+  srvctl modify asm -count ALL
 fi
 
 > /tmp/all_rac_res.txt
