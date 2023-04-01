@@ -17,20 +17,20 @@ all_rac_res_name=$(crsctl stat res | grep -E "NAME" | awk -F '=' '{print $2}' | 
 
 for arrn in ${all_rac_res_name}
 do
-  crsctl stat res ${arrn} | xargs >> /tmp/all_rac_res.txt
+  crsctl stat res ${arrn} -l | grep -v "DEGREE_ID" | xargs >> /tmp/all_rac_res.txt
 done
 
-offline_rac_rec_name="ora.gsd ora.helper ora.proxy_advm ora.rhpserver ora.mgmt.ghchkpt.acfs ora.MGMT.GHCHKPT.advm"
+def_offline_rac_res_name="ora.gsd ora.helper ora.proxy_advm ora.rhpserver ora.mgmt.ghchkpt.acfs ora.MGMT.GHCHKPT.advm"
 
-> /tmp/offline_rac_res.txt
+> /tmp/def_offline_rac_res.txt
 
-for orrn in ${offline_rac_rec_name}
+for dorrn in ${def_offline_rac_res_name}
 do
-  crsctl stat res ${orrn} | grep -v "CRS-2613" | xargs >> /tmp/offline_rac_res.txt
+  crsctl stat res ${dorrn} -l | grep -v "CRS-2613" | grep -v "DEGREE_ID" | xargs >> /tmp/def_offline_rac_res.txt
 done
 
-sed -i '/^$/d' /tmp/offline_rac_res.txt
+sed -i '/^$/d' /tmp/def_offline_rac_res.txt
 
 echo -e "The TARGET and STATE status of rac resource is OFFLINE, INTERMEDIATE, or UNKNOWN, which is as below: \n"
 
-grep -F -v -f /tmp/offline_rac_res.txt /tmp/all_rac_res.txt | grep -E "OFFLINE|INTERMEDIATE|UNKNOWN"
+grep -F -v -f /tmp/def_offline_rac_res.txt /tmp/all_rac_res.txt | grep -E "OFFLINE|INTERMEDIATE|UNKNOWN"
