@@ -1,1 +1,1 @@
-kill -9 `ps -ef|grep LOCAL=NO|awk '{print $2}'`
+kill -9 `ps -ef | grep LOCAL=NO | awk '{print $2}'`
