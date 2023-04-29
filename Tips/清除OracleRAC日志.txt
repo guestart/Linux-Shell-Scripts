@@ -1,0 +1,18 @@
+[root@yyds01 ~]# crontab -l
+00 09 * * 1,5 ~/clear_rac_log.sh
+
+vi clear_rac_log.sh
+
+#!/bin/bash
+
+disk_avail_size=`df -h | grep "/" | head -1 | awk -F ' ' '{print $5}' | awk -F '%' '{print $1}'`
+
+if [ ${disk_avail_size} -ge 80 ]; then
+  find /u01/app/grid/diag/tnslsnr/yyds01/listener/trace -name "listener_*.log" -exec rm -rf {} \;
+  find /u01/app/grid/diag/tnslsnr/yyds01/listener/alert -name "log_*.xml" -exec rm -rf {} \;
+  find /u01/app/grid/diag/tnslsnr/yyds01/listener_scan1/alert -name "log_*.xml" -exec rm -rf {} \;
+  find /u01/app/grid/diag/tnslsnr/yyds01/listener_scan1/trace -name "listener_scan1_*.log" -exec rm -rf {} \;
+  find /u01/app/grid/diag/tnslsnr/yyds01/asmnet1lsnr_asm/trace -name "asmnet1lsnr_asm_*.log" -exec rm -rf {} \;
+  find /u01/app/grid/diag/crs/yyds01/crs/trace -name "*" -exec rm -rf {} \;
+  find /u01/app/oracle/diag/rdbms/yydsdb/yydsdb1/trace -name "*.tr*" -exec rm -rf {} \;
+fi
