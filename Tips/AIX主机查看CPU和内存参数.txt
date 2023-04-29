@@ -1,0 +1,67 @@
+-- AIX主机管理-查看CPU和内存参数
+-- https://blog.csdn.net/oradbm/article/details/124565324
+
+-- 查看逻辑CPU个数
+
+[xxxxxx:root:/] pmcycles -m 
+CPU 0 runs at 4208 MHz
+CPU 1 runs at 4208 MHz
+CPU 2 runs at 4208 MHz
+CPU 3 runs at 4208 MHz
+CPU 4 runs at 4208 MHz
+CPU 5 runs at 4208 MHz
+CPU 6 runs at 4208 MHz
+CPU 7 runs at 4208 MHz
+CPU 8 runs at 4208 MHz
+CPU 9 runs at 4208 MHz
+CPU 10 runs at 4208 MHz
+CPU 11 runs at 4208 MHz
+CPU 12 runs at 4208 MHz
+CPU 13 runs at 4208 MHz
+CPU 14 runs at 4208 MHz
+CPU 15 runs at 4208 MHz
+CPU 16 runs at 4208 MHz
+CPU 17 runs at 4208 MHz
+CPU 18 runs at 4208 MHz
+CPU 19 runs at 4208 MHz
+CPU 20 runs at 4208 MHz
+CPU 21 runs at 4208 MHz
+CPU 22 runs at 4208 MHz
+CPU 23 runs at 4208 MHz
+
+-- 查看物理CPU个数
+
+[xxxxxx:root:/] prtconf|grep Processors
+Number Of Processors: 12
+
+-- 查看内存
+
+(1) a. lsdev -Cc memory  b. lsattr -El mem0 
+
+lsdev -Cc memory
+
+[xxxxxx:root:/] lsdev -Cc memory
+L2cache0 Available  L2 Cache
+mem0     Available  Memory
+
+lsattr -El mem0 
+
+[xxxxxx:root:/] lsattr -El mem0 
+ent_mem_cap           I/O memory entitlement in Kbytes           False
+goodsize       102400 Amount of usable physical memory in Mbytes False
+mem_exp_factor        Memory expansion factor                    False
+size           102400 Total amount of physical memory in Mbytes  False
+var_mem_weight        Variable memory capacity weight            False
+
+(2) bootinfo -r
+
+[xxxxxx:root:/] bootinfo -r
+104857600
+
+说明机器的物理内存为104857600kB。
+
+(3) prtconf | grep "Memory Size"
+
+[xxxxxx:root:/] prtconf | grep "Memory Size"
+Memory Size: 102400 MB
+Good Memory Size: 102400 MB
