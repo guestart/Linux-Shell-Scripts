@@ -1,0 +1,1 @@
+mount -t iso9660,ro /dev/sr0 /media

@@ -1,0 +1,10 @@
+[root@xxxx ~]# service crond status
+crond (pid  46777) is running...
+
+[root@xxxx ~]# ps -ef | grep crond
+root     17074 32610  0 17:36 pts/10   00:00:00 grep crond
+root     46777     1  0  2022 ?        00:00:40 crond
+
+[root@xxxx ~]# ps -eo pid,lstart,etime | grep 46777
+46777 Sat Nov 19 20:33:43 2022 110-21:00:32
+[root@xxxx ~]# 
